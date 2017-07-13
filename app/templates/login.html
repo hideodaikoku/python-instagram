@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="flaskSPA">
+<head>
+    <meta charset="utf-8">
+    <title>Flask Project</title>
+  
+    <link rel="stylesheet" href="pages/mainPage/css/app.css">
+</head>
+
+<body>
+
+    
+    <div id="header">
+        <div>
+            <h1>Shutter Bug</h1>
+            <h2>Login</h2>
+        </div>
+        <img src="pages/mainPage/images/camera.png" width='300px'>
+    </div>
+</br>
+<div class="box">
+<form method="post">
+<p>USERNAME</p>
+<input type=text name=username>
+<p>PASSWORD</p>
+<input type=password name=password>
+</br>
+<input type=submit value=Login>
+</form>
+{% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+{% endif %}
+</div>
+</body>
+</html>

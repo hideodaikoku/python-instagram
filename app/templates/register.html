@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" ng-app="flaskSPA">
+<head>
+    <meta charset="utf-8">
+    <title>Flask Project</title>
+  
+    <link rel="stylesheet" href="pages/mainPage/css/app.css">
+</head>
+
+{% extends "header.html" %}
+
+{% block body %}
+
+<body>
+		<h4>Register</h4>
+		<br>
+		{% from "_formhelpers.html" import render_field %}
+		<form method=post action="/register">
+			<dl>
+				{{render_field(form.username)}}
+				{{render_field(form.password)}}
+				{{render_field(form.confirm)}}
+			</dl>
+			<p><input type=submit value=Register></p>
+		</form>
+		
+		{% if error %}
+			<p class="error"><strong>Error:</strong>{{error}}</p>
+		{% endif %}
+</body>
+
+{% endblock %}
+</html>

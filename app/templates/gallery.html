@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" ng-app="flaskSPA">
+<head>
+    <meta charset="utf-8">
+    <title>Flask Project</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{url_for('static', filename='jquery.js') }}">\x3C/script>')</script>
+    <link rel="stylesheet" href="pages/mainPage/css/app.css">
+</head>
+
+<body>
+
+    
+    <div id="header">
+        <div>
+            <h1>Shutter Bug</h1>
+            <h2> Welcome {{ user }}</h2>
+        </div>
+        <a href="/logout"><div id="content">Logout</div></a>
+    </div>
+</br>
+</br>
+        {% for image_name in image_names %}
+        <div class="box">
+            <img src=" {{url_for('send_image', filename=image_name)}}" style="width:100%">
+            <a href=# id='sendb'><input type='button' value="blackAndWhite" class="blackAndWhite" name="{{image_name}}"></a>
+            <a href=# id='sendp'><input type='button' value="posterize" class="posterize" name="{{image_name}}"></a>
+        </div>
+       {% endfor %}
+    </div>
+
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  $(function() {
+    $('a#sendb').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/bw', {
+        bw: $('.blackAndWhite').attr('name'),
+      }, function(data) {
+				  $("#result").text(data.result);
+				});
+      return false;
+    });
+  });
+  $(function() {
+    $('a#sendp').bind('click', function() {
+      $.getJSON($SCRIPT_ROOT + '/p', {
+        p: $('.posterize').attr('name'),
+      }, function(data) {
+				  $("#result").text(data.result);
+				});
+      return false;
+    });
+  });
+</script>
+</body>
+</html>

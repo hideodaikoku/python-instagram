@@ -1,0 +1,54 @@
+<div class="box">
+    <video id="video" style="width:480px; max-height:360px;"></video>
+    <div><button id="capture" onclick="snapshot();">Capture</button></div>
+    <canvas id="canvas" style="width:480px; max-height:360px;"></canvas>
+</div>
+<script>
+    navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia;
+
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+
+if (navigator.getUserMedia) {
+   navigator.getUserMedia({ audio: false, video: { width: 480, height: 360 } },
+      function(stream) {
+         var video = document.querySelector('video');
+         video.srcObject = stream;
+         video.onloadedmetadata = function(e) {
+           video.play();
+         };
+      },
+      function(err) {
+         console.log("The following error occurred: " + err.name);
+      }
+   );
+} else {
+   console.log("getUserMedia not supported");
+}
+
+
+function snapshot(){
+
+    var w = video.offsetWidth;
+    var h = video.offsetHeight;
+
+  	canvas.setAttribute("width", w);
+  	canvas.setAttribute("height",h);
+
+  	ctx.drawImage(video,0,0,w,h);
+    
+    var dataURL = canvas.toDataURL();
+    document.getElementById('canvasImg').src = dataURL;
+    document.getElementById('canvasImg').download="image.png";
+    var btn = document.createElement("BUTTON");        
+    var t = document.createTextNode("Black and White");  
+    btn.appendChild(t);                                
+    document.getElementById("f").appendChild(btn);
+    btn.onclick=function(){
+        location.href = "/blackandwhite";
+    }
+	}
+</script>

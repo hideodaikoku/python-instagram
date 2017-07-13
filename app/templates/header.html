@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" ng-app="flaskSPA">
+<head>
+    <meta charset="utf-8">
+    <title>Flask Project</title>
+  
+    <link rel="stylesheet" href="pages/mainPage/css/app.css">
+</head>
+
+<body>
+<div id="header">
+    <div>
+        <h1>Shutter Bug</h1>
+    </div>
+    <img src="pages/mainPage/images/camera.png" width='300px'>
+</div>
+</br>
+<div id="contents">
+{% block body %}{% endblock %}
+</div>
+</body>
+</html>

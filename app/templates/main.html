@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="flaskSPA">
+<head>
+    <meta charset="utf-8">
+    <title>Flask Project</title>
+  
+    <link rel="stylesheet" href="pages/mainPage/css/app.css">
+</head>
+
+<body>
+
+    
+    <div id="header">
+        <div>
+            <h1>Shutter Bug</h1>
+            <h2> Welcome {{ user }}</h2>
+        </div>
+        <a href="/logout"><div id="content">Logout</div></a>
+    </div>
+
+</br>
+
+<div id="f" class="box">
+    
+    <h1>Upload New File</h1>
+        <form method=post enctype=multipart/form-data>
+        <p><input type=file name=file>
+             <input type=submit value=Upload>
+        </form>
+
+</div>
+</br>
+<div onclick="location.href = '/gallery'" class="box">
+<h2>GALLERY</h2>
+</div>
+
+</body>
+</html>
